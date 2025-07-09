@@ -27,7 +27,6 @@ class User < ApplicationRecord
 
   has_many :company_workers
   has_many :clients, -> { order(CompanyWorker.arel_table[:created_at]) }, through: :company_workers, source: :company
-  has_many :contracts
   has_many :document_signatures
   has_many :documents, through: :document_signatures do
     def unsigned_contracts
@@ -203,12 +202,6 @@ class User < ApplicationRecord
 
   def password_required?
     false
-  end
-
-  def should_regenerate_consulting_contract?(changeset)
-    CONSULTING_CONTRACT_ATTRIBUTES.any? do |attr|
-      changeset[attr].present? && send(attr) != changeset[attr]
-    end
   end
 
   private

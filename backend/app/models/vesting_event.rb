@@ -3,12 +3,6 @@
 class VestingEvent < ApplicationRecord
   include ExternalId
 
-  CANCELLATION_REASONS = {
-    not_enough_shares_available: "not_enough_shares_available",
-    new_grant_created: "new_grant_created",
-    contract_ended: "contract_ended",
-  }.freeze
-
   has_paper_trail
   has_one :equity_grant_transaction
   belongs_to :equity_grant

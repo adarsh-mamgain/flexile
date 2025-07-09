@@ -6,7 +6,6 @@ class EquityGrantExercise < ApplicationRecord
   belongs_to :bank_account, class_name: "EquityExerciseBankAccount",
                             foreign_key: :equity_exercise_bank_account_id,
                             optional: true
-  has_one_attached :contract
   has_many :equity_grant_exercise_requests
   has_many :equity_grants, through: :equity_grant_exercise_requests
 
